@@ -53,6 +53,11 @@ module Coupons
         options
       end
 
+      def redeem(options)
+        self.redemptions.create!()
+        self.apply(options)
+      end
+
       def redemptions_count
         coupon_redemptions_count
       end
