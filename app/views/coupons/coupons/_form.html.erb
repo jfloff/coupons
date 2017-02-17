@@ -4,7 +4,7 @@
   <div class="form-group">
     <div class="form-label">
       <%= form.label :code %>
-      <%= form.hint  :code %>
+      <%= form.hint :code %>
     </div>
 
     <div class="form-control">
@@ -16,7 +16,7 @@
   <div class="form-group">
     <div class="form-label">
       <%= form.label :description %>
-      <%= form.hint  :description, 'foo' %>
+      <%= form.hint :description, 'foo' %>
     </div>
 
     <div class="form-control">
@@ -27,20 +27,32 @@
 
   <div class="form-group">
     <div class="form-label">
-      <%= form.label :redemption_limit %>
-      <%= form.hint  :redemption_limit %>
+      <%= form.label :redemption_limit_global %>
+      <%= form.hint :redemption_limit_global %>
     </div>
 
     <div class="form-control">
-      <%= form.number_field :redemption_limit, min: 0 %>
-      <%= form.error_for :redemption_limit %>
+      <%= form.number_field :redemption_limit_global, min: 0 %>
+      <%= form.error_for :redemption_limit_global %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-label">
+      <%= form.label :redemption_limit_user %>
+      <%= form.hint :redemption_limit_user %>
+    </div>
+
+    <div class="form-control">
+      <%= form.number_field :redemption_limit_user, min: 0 %>
+      <%= form.error_for :redemption_limit_user %>
     </div>
   </div>
 
   <div class="form-group">
     <div class="form-label">
       <%= form.label :type %>
-      <%= form.hint  :type %>
+      <%= form.hint :type %>
     </div>
 
     <div class="form-control">
@@ -52,7 +64,7 @@
   <div class="form-group">
     <div class="form-label">
       <%= form.label :amount %>
-      <%= form.hint  :amount %>
+      <%= form.hint :amount %>
     </div>
 
     <div class="form-control">
@@ -63,30 +75,81 @@
 
   <div class="form-group">
     <div class="form-label">
-      <%= form.label :valid_from %>
-      <%= form.hint  :valid_from %>
+      <%= form.label :valid_from_date %>
+      <%= form.hint :valid_from_date %>
     </div>
 
     <div class="form-control">
-      <%= form.date_select :valid_from, include_blank: true, start_year: Date.current.year, end_year: Date.current.year + 10 %>
-      <%= form.error_for :valid_from %>
+      <%= form.date_select :valid_from_date, include_blank: true, start_year: Date.current.year, end_year: Date.current.year + 10 %>
+      <%= form.error_for :valid_from_date %>
     </div>
   </div>
 
   <div class="form-group">
     <div class="form-label">
-      <%= form.label :valid_until %>
-      <%= form.hint  :valid_until %>
+      <%= form.label :valid_until_date %>
+      <%= form.hint :valid_until_date %>
     </div>
 
     <div class="form-control">
-      <%= form.date_select :valid_until, include_blank: true, start_year: Date.current.year, end_year: Date.current.year + 10 %>
-      <%= form.error_for :valid_until %>
+      <%= form.date_select :valid_until_date, include_blank: true,
+        start_year: Date.current.year, end_year: Date.current.year + 10 %>
+      <%= form.error_for :valid_until_date %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-label">
+      <%= form.label :valid_from_time %>
+      <%= form.hint :valid_from_time %>
+    </div>
+
+    <div class="form-control">
+      <%= form.time_select :valid_from_time, include_blank: true %>
+      <%= form.error_for :valid_from_time %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-label">
+      <%= form.label :valid_until_time %>
+      <%= form.hint :valid_until_time %>
+    </div>
+
+    <div class="form-control">
+      <%= form.time_select :valid_until_time, include_blank: true %>
+      <%= form.error_for :valid_until_time %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-label">
+      <%= form.label :recurrence_type %>
+      <%= form.hint :recurrence_type %>
+    </div>
+
+    <div class="form-control">
+      <%= form.select :recurrence_type, Coupons::RecurrenceType.to_select, include_blank: true %>
+      <%= form.error_for :recurrence_type %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="form-label">
+      <%= form.label :recurrence %>
+      <%= form.hint :recurrence %>
+    </div>
+
+    <div class="form-control">
+      <% rows, cols = (0..6).to_a, t('date.abbr_day_names') %>
+      <%= form.collection_check_boxes :recurrence, rows.zip(cols), :first, :last, checked: [] %>
+      <%= form.error_for :recurrence %>
     </div>
   </div>
 
   <div class="form-actions form-group">
-    <%= form.submit t(form.object.persisted? ? 'edit' : 'create', scope: 'coupons.coupon.buttons'), class: 'button rounded green' %>
+    <%= form.submit t(form.object.persisted? ? 'edit' : 'create',
+      scope: 'coupons.coupon.buttons'), class: 'button rounded green' %>
   </div>
 
 <% end %>

@@ -1,4 +1,6 @@
+# Directories
 /.bundle/
+/.vscode
 /.yardoc
 /Gemfile.lock
 /_yardoc/
@@ -7,13 +9,17 @@
 /pkg/
 /spec/reports/
 /tmp/
-*.bundle
-*.so
-*.o
+
+# Files
 *.a
-mkmf.log
-log
-*.log
-*.sqlite3
+*.bundle
 *.lock
+*.log
+*.o
+*.so
+*.sqlite3
+*.sublime*
+.byebug_history
+log
+mkmf.log
 tmp
