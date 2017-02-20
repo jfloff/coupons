@@ -88,22 +88,29 @@ en:
     labels:
       coupon:
         description: 'Description'
-        redemption_limit: 'Redemption Limit'
+        redemption_limit_global: 'Global Redemption Limit'
+        redemption_limit_user: 'Redemption Limit by User'
         type: 'Type'
         amount: 'Amount'
         code: 'Discount Code'
-        valid_from: 'Valid From'
-        valid_until: 'Valid Until'
+        valid_from_date: 'Valid From Date'
+        valid_until_date: 'Valid Until Date'
+        valid_from_time: 'Valid From Time'
+        valid_until_time: 'Valid Until Time'
 
     hints:
       coupon:
-        type: 'Select how this coupon will apply the discount.'
+        amount: 'This is the actual discount amount. 0-100 for percentage, zero or positive number for amount.'
         code: 'Customers will inform this code when checking out.'
         description: 'Describe this coupon, so you can remember why it exists.'
-        redemption_limit: 'Set how many times this coupon can be used. Zero means no limit.'
-        amount: 'This is the actual discount amount. 0-100 for percentage, zero or positive number for amount.'
-        valid_from: 'When this coupon will be available.'
-        valid_until: 'When will this coupon expire. By default, it does not expire.'
+        recurrence_type: 'Restricts redeemability of the coupon to the selected recurrence.'
+        redemption_limit_global: 'Total number of times this coupon can be used, independent of the user limit. Zero means no limit.'
+        redemption_limit_user: 'Number of times a user can redeem a coupon, independent of global limit. Zero means no limit.'
+        type: 'Select how this coupon will apply the discount.'
+        valid_from_date: 'When this coupon will be available.'
+        valid_from_time: 'Start time when coupon can be redeemed.'
+        valid_until_date: 'When will this coupon expire. By default, it does not expire.'
+        valid_until_time: 'End time when coupon can be redeemed.'
 
     form_error_description: 'You must double check the form:'
 
@@ -111,6 +118,8 @@ en:
       type:
         amount: 'Amount ($)'
         percentage: 'Percentage (%)'
+      recurrence_type:
+        weekly: 'Weekly'
 
       buttons:
         create: 'Create Coupon'
@@ -124,4 +133,7 @@ en:
     errors:
       messages:
         coupon_already_expired: must be equal to or greater than today
-        coupon_valid_until: must be greater than or equal to valid from date.
+        coupon_code_not_unique: already exists among currently valid, non-depleted coupons
+        coupon_recurrence: is invalid
+        coupon_valid_until_date: must be greater than or equal to valid from date
+        coupon_valid_until_time: must be greater or equal to the start time
