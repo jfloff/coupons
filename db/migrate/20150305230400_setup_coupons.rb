@@ -10,8 +10,6 @@ class SetupCoupons < ActiveRecord::Migration
       t.integer :amount, null: false, default: 0
       t.string :type, null: false
       t.timestamps null: false
-
-      case ActiveRecord::Base.connection.adapter_name
       t.text :attachments, null: false, default: '{}'
     end
 

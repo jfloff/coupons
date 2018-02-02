@@ -201,6 +201,18 @@ Coupons uses [I18n](http://guides.rubyonrails.org/i18n.html). It has support for
 
 ![Creating coupon](https://github.com/fnando/coupons/raw/master/screenshots/coupons-new.png)
 
+## Developing
+
+There is a Docker environment ready to spawn up a dummy app with just the local coupons gems loaded into it. You can use it with the following commands:
+```shell
+# to spawn the web version of the dummy app
+# available at localhost:3000
+docker-compose up web
+
+# to spawn a shell for the same project
+docker-compose run --rm shell
+```
+
 ## Contributing
 
 1. Before implementing anything, create an issue to discuss your idea. This only applies to big changes and new features.

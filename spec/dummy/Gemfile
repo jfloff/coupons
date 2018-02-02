@@ -1,0 +1,10 @@
+source 'https://rubygems.org'
+
+gem 'rails', '>= 4.2.0', '< 5.0.0'
+gem 'autoprefixer-rails'
+gem 'sass-rails'
+gem 'page_meta'
+gem 'pg', '0.20'
+gem 'coupons', path: '../../'
+gem 'paginate'
+gem 'rake'

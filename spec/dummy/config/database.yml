@@ -1,2 +1,6 @@
-test:
-  url: "<%= ENV.fetch('DATABASE_URL', 'postgres:///coupons_test') %>"
+development:
+  adapter: postgresql
+  encoding: unicode
+  host: "<%= ENV['DATABASE_URL']%>"
+  database: coupons_test
+  # url: "<%= ENV.fetch('DATABASE_URL', 'postgres:///coupons_test') %>"

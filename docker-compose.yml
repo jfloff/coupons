@@ -1,0 +1,33 @@
+web:
+  build: .
+  command: "bin/rails server -p 3000 -b '0.0.0.0'"
+  environment:
+    RAILS_ENV: 'development'
+    RACK_ENV: 'development'
+    DATABASE_URL: 'postgres://postgres:@db:5432/postgres'
+  ports:
+    - '3000:3000'
+  links:
+    - db
+  volumes:
+    - '.:/app/user'
+
+shell:
+  build: .
+  command: bash
+  environment:
+    RAILS_ENV: 'development'
+    RACK_ENV: 'development'
+    DATABASE_URL: 'postgres://postgres:@db:5432/postgres'
+  ports:
+    - '3000:3000'
+  links:
+    - db
+  volumes:
+    - '.:/app/user'
+
+# User: postgres / No password
+db:
+  image: postgres
+  ports:
+    - '5432:5432'
