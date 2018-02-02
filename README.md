@@ -40,7 +40,7 @@ After installing `Coupons`, execute `rake coupons:install:migrations` and add th
 mount Coupons::Engine => '/', as: 'coupons_engine'
 ```
 
-You can visit `/coupons` to access the dashboard.
+You can visit `/admin/coupons` to access the dashboard.
 
 ## Creating coupons
 
@@ -182,7 +182,7 @@ To be written.
 You may want to apply discounts using AJAX, so you can give instant feedback. In this case, you'll find the `/coupons/apply` endpoint useful.
 
 ```javascript
-var response = $.get('/coupons/apply', {amount: 600.0, coupon: 'RAILSCONF15'});
+var response = $.get('/admin/coupons/apply', {amount: 600.0, coupon: 'RAILSCONF15'});
 response.done(function(options)) {
   console.log(options);
   //=> {amount: 600.0, discount: 100.0, total: 500.0}
