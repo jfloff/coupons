@@ -26,17 +26,16 @@ module Coupons
       @generator = Generator.new
       @finder = Finders::FirstAvailable
       @per_page = 50
-      @pagination_adapter = if defined?(Kaminari)
-                              :kaminari
-                            else
-                              :paginate
-                            end
 
-      @paginator =  if pagination_adapter == :kaminari
-                      -> relation, page { relation.page(page).per(Coupons.configuration.per_page) }
-                    else
-                      -> relation, page { relation.paginate(page: page, size: Coupons.configuration.per_page) }
-                    end
+      # loads pagination according to loaded gem
+      # should fallback to paginate gem
+      if Gem.loaded_specs.has_key?('kaminari')
+        @pagination_adapter =:kaminari
+        @paginator = -> relation, page { relation.page(page).per(Coupons.configuration.per_page) }
+      elsif Gem.loaded_specs.has_key?('paginate')
+        @pagination_adapter = :paginate
+        @paginator = -> relation, page { relation.paginate(page: page, size: Coupons.configuration.per_page) }
+      end
 
       @authorizer = proc do |controller|
         if Rails.env.production?
