@@ -93,7 +93,7 @@ module Coupons
       private
 
       def percentage_discount(input_amount)
-        BigDecimal("#{input_amount}") * (BigDecimal("#{amount}") / 100)
+        input_amount.to_d * (BigDecimal("#{amount}") / 100)
       end
 
       def validate_dates
