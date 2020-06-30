@@ -40,7 +40,7 @@ module Coupons
       validate :validate_dates
 
       def apply(options)
-        input_amount = BigDecimal("#{options[:amount]}")
+        input_amount = options[:amount].to_d
         discount = BigDecimal(percentage_based? ? percentage_discount(options[:amount]) : amount)
         total = [0, input_amount - discount].max
 
